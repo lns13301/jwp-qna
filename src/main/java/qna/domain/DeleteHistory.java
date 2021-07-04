@@ -1,9 +1,6 @@
 package qna.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -18,11 +15,15 @@ public class DeleteHistory {
     private Long deletedById;
     private LocalDateTime createDate = LocalDateTime.now();
 
-    public DeleteHistory(ContentType contentType, Long contentId, Long deletedById, LocalDateTime createDate) {
+    @ManyToOne
+    @JoinColumn(name = "delete_by_id")
+    private User writer;
+
+    public DeleteHistory(ContentType contentType, Long contentId, User writer, LocalDateTime localDateTime) {
         this.contentType = contentType;
         this.contentId = contentId;
-        this.deletedById = deletedById;
-        this.createDate = createDate;
+        this.writer = writer;
+        this.createDate = localDateTime;
     }
 
     protected DeleteHistory() {
