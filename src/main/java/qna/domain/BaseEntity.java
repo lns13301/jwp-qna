@@ -22,11 +22,9 @@ public abstract class BaseEntity {
     private Long modifiedBy;
 
     @CreatedDate
-    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedBy
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
     protected LocalDateTime getCreatedAt() {

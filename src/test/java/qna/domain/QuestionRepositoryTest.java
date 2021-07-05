@@ -19,14 +19,14 @@ class QuestionRepositoryTest {
     @Autowired
     private UserRepository users;
 
-    @DisplayName("질문 저장")
+    @DisplayName("질문을 생성한다.")
     @Test
     void save() {
         Question question = questions.save(new Question("첫 번째 질문", "이 테스트는 성공 할까요?"));
         assertThat(question.getTitle()).isEqualTo("첫 번째 질문");
     }
 
-    @DisplayName("질문 조회")
+    @DisplayName("질문을 조회한다.")
     @Test
     void findByDeletedFalse() {
         Question question = questions.save(new Question("첫 번째 질문", "이 테스트는 성공 할까요?"));
@@ -54,5 +54,7 @@ class QuestionRepositoryTest {
     @AfterEach
     void tearDown() {
         questions.flush();
+        answers.flush();
+        users.flush();
     }
 }
