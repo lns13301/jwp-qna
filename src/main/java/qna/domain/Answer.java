@@ -84,6 +84,8 @@ public class Answer extends BaseEntity {
 
     public void setQuestion(Long questionId) {
         this.question = question;
+        this.question.delete(this);
+        this.question.addAnswer(this);
     }
 
     public String getContents() {
